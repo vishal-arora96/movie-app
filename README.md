@@ -1,4 +1,4 @@
-# React App
+# Movies Watchlist
 
 Movies Watchlist Application build using React, Omdb Api, React Hooks and Bootstrap
 
