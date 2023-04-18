@@ -1,4 +1,4 @@
-# Movies Watchlist
+# Movies Panda
 
 Movies Watchlist Application build using React, Omdb Api, React Hooks and Bootstrap
 
