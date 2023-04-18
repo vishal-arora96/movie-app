@@ -10,7 +10,7 @@ function SearchBox({ value, setSearchValue }) {
         onChange={(e) => {
           setSearchValue(e.target.value);
         }}
-        placeholder="Type to search...."
+        placeholder="Type to search a movie name...."
       />
     </div>
   );
