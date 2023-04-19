@@ -1,6 +1,6 @@
 # Movies Panda
 
-Movies Watchlist Application build using React, Omdb Api, React Hooks and Bootstrap
+Movies Watchlist Application build using React, Omdb Api, React Hook - Usestate and Bootstrap
 
 ## Available Scripts
 
