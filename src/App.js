@@ -6,9 +6,10 @@ import MovieList from "./components/MovieList";
 import MovieListHeading from "./components/MovieListHeading";
 import SearchBox from "./components/SearchBox";
 import "react-toastify/dist/ReactToastify.css";
+import { moviesList } from "./data/initialMovieList";
 
 function App() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(moviesList);
   const [searchValue, setSearchValue] = useState("");
   const [favourites, setFavourites] = useState([]);
 
@@ -26,14 +27,16 @@ function App() {
     getMovieRequest(searchValue);
   }, [searchValue]);
 
-  useEffect(()=>{
-    const favouritesStored = JSON.parse(localStorage.getItem("react-movie-app-favourites"));
-    if(favouritesStored) setFavourites(favouritesStored);
-},[]);
+  useEffect(() => {
+    const favouritesStored = JSON.parse(
+      localStorage.getItem("react-movie-app-favourites")
+    );
+    if (favouritesStored) setFavourites(favouritesStored);
+  }, []);
 
-  const saveToLocalStorage = (items) =>{
-    localStorage.setItem("react-movie-app-favourites",JSON.stringify(items));
-  }
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem("react-movie-app-favourites", JSON.stringify(items));
+  };
   const AddFavouriteMovie = (movie) => {
     const isNewMovie = favourites.find((mo) => {
       return mo.imdbID === movie.imdbID;
@@ -46,17 +49,17 @@ function App() {
     }
   };
 
-  const RemoveFavouriteMovie = movie => {
-    const modifiedArray = favourites.filter(favourite=>{
+  const RemoveFavouriteMovie = (movie) => {
+    const modifiedArray = favourites.filter((favourite) => {
       return favourite.imdbID !== movie.imdbID;
-    })
+    });
     setFavourites(modifiedArray);
     saveToLocalStorage(modifiedArray);
   };
 
   return (
     <div className="container-fluid movie-app">
-      <ToastContainer autoClose={3000}position="top-center"></ToastContainer>
+      <ToastContainer autoClose={3000} position="top-center"></ToastContainer>
       <div className="row d-flex align-items-center mt-4 mb-4">
         <MovieListHeading heading={"Movies"} />
         <SearchBox value={searchValue} setSearchValue={setSearchValue} />
@@ -72,9 +75,11 @@ function App() {
         <MovieListHeading heading={"Favourites"} />
       </div>
       <div className="row">
-        <MovieList movies={favourites} 
-        handleFavouritesClick={RemoveFavouriteMovie}
-        handleFavourite={RemoveFavouriteMovie} />
+        <MovieList
+          movies={favourites}
+          handleFavouritesClick={RemoveFavouriteMovie}
+          handleFavourite={RemoveFavouriteMovie}
+        />
       </div>
     </div>
   );
